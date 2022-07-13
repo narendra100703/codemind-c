@@ -1,31 +1,42 @@
 #include<stdio.h>
 int main()
 {
-    int number,rev=0,temp,count=0;
-    scanf("%d",&number);
-    number+=1;
-    for(;number;number++)
+    int n,i,temp,r,rev=0,j,c=0,count=0;
+    scanf("%d",&n);
+    i=n+1;
+    while(i>=0)
     {
-        temp=number,rev=0,count=0;
-        for(int i=1;i<=number/2;i++)
+        rev=0;
+        temp=i;
+        while(temp>0)
         {
-            if(number%i==0)
+            r=temp%10;
+            rev=rev*10+r;
+            temp=temp/10;
+        }
+        if(rev==i)
+        {
+            count=0;
+            for(j=1;j<=i;j++)
             {
-                count++;
+                if(rev%j==0)
+                {
+                    count++;
+                }
+            }
+            if(count==2)
+            {
+                printf("%d",rev);
+                c=1;
             }
         }
-        if(count==1)
+        if(c==1)
         {
-            while(temp)
-            {
-                rev=(rev*10)+temp%10;
-                temp/=10;
-            }
-            if(number==rev)
-            {
-                printf("%d",number);
-                break;
-            }
+            break;
+        }
+        else
+        {
+            i++;
         }
     }
 }
